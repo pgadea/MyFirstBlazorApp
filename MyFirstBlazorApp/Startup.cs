@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eShop.DataStore.HardCoded;
+using eShop.UseCases.PluginInterfaces.DataStore;
+using eShop.UseCases.SearchProductScreen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +32,10 @@ namespace MyFirstBlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ISearchProduct, SearchProduct>();
+            services.AddTransient<IViewProduct, ViewProduct>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
